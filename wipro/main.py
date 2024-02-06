@@ -1,7 +1,6 @@
 import time
 import psycopg2
 
-
 from enum import Enum
 from typing import Any
 from datetime import datetime
@@ -32,12 +31,17 @@ def main():
 
 	conn.autocommit = True
 	
-	# measure time elapsed
 	engine_local = engine(conn)
-	with open('example_input.txt', 'r') as file:
+	with open('BIG_input.txt', 'r') as file:
 		for line in file:
 			data_array = line.strip().split(",")
 			engine_local.calculator(data(data_array[0], datetime.strptime(data_array[1], "%d-%b-%Y"), data_array[2]))
+
+
+	# loaded = numpy.genfromtxt('BIG_input.txt', delimiter='\n', dtype=numpy.str_)
+	# for item in numpy.nditer(loaded):
+	# 	data_array = item.item(0).split(",")
+	# 	engine_local.calculator(data(data_array[0], datetime.strptime(data_array[1], "%d-%b-%Y"), data_array[2]))
 	
 if __name__ == "__main__":
 	# time_array = []

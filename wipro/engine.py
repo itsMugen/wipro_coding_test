@@ -43,3 +43,15 @@ class engine():
 				#if bigger
 				if self.map_of_calcs[data.instrument_name] < float(data.value):
 					self.map_of_calcs[data.instrument_name] = float(data.value)
+
+			else:
+				#For any other instrument from the input file - sum of the newest 10 elements (in terms of the date).
+				if "last_10" not in self.map_of_calcs:
+					self.map_of_calcs["last_10"] = [data]
+				elif len(self.map_of_calcs["last_10"]) < 10:
+					self.map_of_calcs["last_10"].append(data)
+				else:
+					self.map_of_calcs["last_10"].sort(key=lambda x: x.date)
+					if self.map_of_calcs["last_10"][0].date < data.date:
+						self.map_of_calcs["last_10"][0] = data
+		
