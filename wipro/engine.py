@@ -22,7 +22,6 @@ class engine():
 
 		
 	def calculator(self, data: data):
-
 		if data.date <= datetime.strptime("19-Dec-2014", "%d-%b-%Y") and data.date.weekday() < 5:
 			if self.map_multipliers == {}:
 				self.update_multipliers()
@@ -40,7 +39,6 @@ class engine():
 				self.map_of_calcs[f"len_{data.instrument_name}"] += 1
 
 			elif data.instrument_name == "INSTRUMENT3":
-				#if bigger
 				if self.map_of_calcs[data.instrument_name] < float(data.value):
 					self.map_of_calcs[data.instrument_name] = float(data.value)
 
