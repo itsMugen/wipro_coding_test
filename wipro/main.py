@@ -31,14 +31,26 @@ def main():
 	conn = psycopg2.connect(**config)
 
 	conn.autocommit = True
-	cursor = conn.cursor()
 	
 	# measure time elapsed
+	engine_local = engine(conn)
 	with open('example_input.txt', 'r') as file:
 		for line in file:
 			data_array = line.strip().split(",")
-			engine().calculator(data(data_array[0], datetime.strptime(data_array[1], "%d-%b-%Y"), data_array[2]), cursor)
-
-
+			engine_local.calculator(data(data_array[0], datetime.strptime(data_array[1], "%d-%b-%Y"), data_array[2]))
+	
 if __name__ == "__main__":
+	# time_array = []
+
+	# for i in range(0, 5):
+	# 	start = time.time()
+	# 	main()
+	# 	end = time.time()
+	# 	time_array.append(end-start)
+
+	# print(time_array)
+	# print(f"Median time to run main: {sum(time_array)/len(time_array)}")
+	start = time.time()
 	main()
+	end = time.time()
+	print(f"Time to run main: {end-start}")
