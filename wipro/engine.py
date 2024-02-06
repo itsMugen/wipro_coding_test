@@ -21,17 +21,11 @@ class engine():
 				self.map_of_calcs[data.instrument_name] += float(data.value) * float(results[0][-1])
 				self.map_of_calcs[f"len_{data.instrument_name}"] += 1
 
-				print(f"median1: {self.map_of_calcs[data.instrument_name]/self.map_of_calcs[f'len_{data.instrument_name}']}")
-
 			elif data.instrument_name == "INSTRUMENT2" and data.date.year == 2014:
 				self.map_of_calcs[data.instrument_name] += float(data.value) * float(results[0][-1])
 				self.map_of_calcs[f"len_{data.instrument_name}"] += 1
 
-				print(f"median2: {self.map_of_calcs[data.instrument_name]/self.map_of_calcs[f'len_{data.instrument_name}']}" )
-			
 			elif data.instrument_name == "INSTRUMENT3":
 				#if bigger
 				if self.map_of_calcs[data.instrument_name] < float(data.value):
 					self.map_of_calcs[data.instrument_name] = float(data.value)
-
-					print(f"max 3: {self.map_of_calcs[data.instrument_name]}")

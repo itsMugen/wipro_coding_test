@@ -34,14 +34,10 @@ def main():
 	cursor = conn.cursor()
 	
 	# measure time elapsed
-	start_time = time.time()
 	with open('example_input.txt', 'r') as file:
 		for line in file:
 			data_array = line.strip().split(",")
 			engine().calculator(data(data_array[0], datetime.strptime(data_array[1], "%d-%b-%Y"), data_array[2]), cursor)
-
-
-	print("--- %s seconds ---" % (time.time() - start_time))
 
 
 if __name__ == "__main__":
