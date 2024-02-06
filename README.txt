@@ -9,4 +9,6 @@ create a larger dataset on which smaller changes could reflect better but the re
 not draw any conclusions from that.
 Also numpy would be great to suddivide in blocks the input data and target the sweetspot by using as much memory as possibile at once.
 I'm not sure of what the standard of speed is but I'm sure more can be achieved by delving in libraries that take full advantage
-of the underling C speed.
+of the underling C speed. For the DB I've used postgresql but having speed in mind in a future iteration, Redis would also be a
+solid choice to access faster the price modifier.
+
