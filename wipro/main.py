@@ -57,4 +57,4 @@ if __name__ == "__main__":
 	start = time.time()
 	main()
 	end = time.time()
-	print(f"Time to run main: {end-start}")
+	print(f"Python run: {end-start}")

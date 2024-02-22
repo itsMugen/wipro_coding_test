@@ -9,7 +9,7 @@ class engine():
 		self.map_multipliers = {}
 		self.conn = conn
 
-		self.updater = threading.Timer(0.01, self.update_multipliers).start()
+		self.updater = threading.Timer(0.25, self.update_multipliers).start()
 
 	def update_multipliers(self):
 		query = "select * from instrument_price_modifier"
@@ -27,14 +27,14 @@ class engine():
 				self.update_multipliers()
 
 			if data.instrument_name not in self.map_of_calcs:
-				self.map_of_calcs[data.instrument_name] = float(data.value)
-				self.map_of_calcs[f"len_{data.instrument_name}"] = 1
+				self.map_of_calcs[data.instrument_name] = 0
+				self.map_of_calcs[f"len_{data.instrument_name}"] = 0
 			
 			if data.instrument_name == "INSTRUMENT1":
 				self.map_of_calcs[data.instrument_name] += float(data.value) * float(self.map_multipliers[data.instrument_name])
 				self.map_of_calcs[f"len_{data.instrument_name}"] += 1
 
-			elif data.instrument_name == "INSTRUMENT2" and data.date.year == 2014:
+			elif data.instrument_name == "INSTRUMENT2" and data.date.year == 2014 and data.date.month == 11:
 				self.map_of_calcs[data.instrument_name] += float(data.value) * float(self.map_multipliers[data.instrument_name])
 				self.map_of_calcs[f"len_{data.instrument_name}"] += 1
 
